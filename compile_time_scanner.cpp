@@ -13,7 +13,7 @@ constexpr pair<char,unsigned int> Trs(const char& c, const unsigned int& i)
 }
 
 template<>
-constexpr array table<1>
+constexpr array<pair<char,unsigned int>,3> table<1>
 {
   Trs('a', 2),
   Trs('b', 3),
@@ -21,19 +21,19 @@ constexpr array table<1>
 };
 
 template<>
-constexpr array table<2>
+constexpr array<pair<char,unsigned int>,1> table<2>
 {
   Trs('d', 1)
 };
 
 template<>
-constexpr array table<3>
+constexpr array<pair<char,unsigned int>,1> table<3>
 {
   Trs('d', 0)
 };
 
 template<>
-constexpr array table<4>
+constexpr array<pair<char,unsigned int>,1> table<4>
 {
   Trs('d', 0)
 };
