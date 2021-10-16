@@ -68,12 +68,16 @@ ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by: 
+// ** Done by: Michael Snodgrass
 int scanner(tokentype& tt, string& w)
 {
   // ** Grab the next word from the file via fin
+  fin >> w;
+  
   // 1. If it is eofm, return right now.   
-
+  if( w.compare( "eofm" ) )
+    return;
+  
   /*  **
   2. Call the token functions (word and period) 
      one after another (if-then-else).
