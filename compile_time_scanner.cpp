@@ -9,7 +9,7 @@ auto table = 0;
 
 constexpr pair<char,unsigned int> Trs(const char& c, const unsigned int& i)
 {
-  return make_pair(c,i);
+  return pair(c,i);
 }
 
 template<>
