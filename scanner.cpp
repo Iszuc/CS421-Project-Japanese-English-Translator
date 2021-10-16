@@ -75,7 +75,7 @@ int scanner(tokentype& tt, string& w)
   fin >> w;
   
   // 1. If it is eofm, return right now.   
-  if( w.compare( "eofm" ) )
+  if( w.compare( "eofm" ) == 0 )
     return;
   
   /*  **
