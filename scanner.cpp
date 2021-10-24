@@ -52,10 +52,10 @@ bool period (string s)
 // TABLES Done by: ** Michael Snodgrass
 
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
-enum tokentype {ERROR, WORD1, WORD2, PERIOD, VERB, VERBNEG, EOFM};
+enum tokentype {ERROR, WORD1, WORD2, PERIOD, VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, EOFM};
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG" , "EOFM" }; 
+string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "EOFM" }; 
 
 // ** Need the reservedwords table to be set up here. 
 // ** Do not require any file input for this. Hard code the table.
