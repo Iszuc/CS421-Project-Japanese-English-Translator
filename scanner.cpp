@@ -78,6 +78,20 @@ int scanner(tokentype& tt, string& w)
   if( w.compare( "eofm" ) == 0 )
     return;
   
+  if( word( w ) ) // If w is a word
+  {
+    // TODO add 3.
+  }
+  else
+  if( period( w ) ) // If w is just a peroid
+  {
+    // TODO do something for period.
+  }
+  else // If w is unrecognized.
+  {
+    // TODO Add an error
+  }
+  
   /*  **
   2. Call the token functions (word and period) 
      one after another (if-then-else).
