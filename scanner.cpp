@@ -76,7 +76,7 @@ int scanner(tokentype& tt, string& w)
   
   // 1. If it is eofm, return right now.   
   if( w.compare( "eofm" ) == 0 )
-    return;
+    return; // NOTE: Michael Snodgrass - I do not know what to return for this actually since scanner call is not being used as a parameter.
   
   if( word( w ) ) // If w is a word
   {
