@@ -77,18 +77,19 @@ int scanner(tokentype& tt, string& w)
   if( w.compare( "eofm" ) == 0 )
     return 0; // NOTE: Michael Snodgrass - I do not know what to return for this actually since scanner call is not being used as a parameter.
   
-  if( word( w ) ) // If w is a word
+  if( word( w ) ) // If w is a Japanese word
   {
-    // TODO add 3.
+    // TODO add more checks.
+    tt = WORD1; // Placeholder
   }
-  else
-  if( period( w ) ) // If w is just a peroid
+  else // If w is just a peroid
+  if( period( w ) )
   {
-    // TODO do something for period.
+    tt = PERIOD; // Set the token type to error.
   }
   else // If w is unrecognized.
   {
-    // TODO Add an error
+    tt = ERROR; // Set the token type to error.
   }
   
   /*  **
