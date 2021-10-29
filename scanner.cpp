@@ -79,8 +79,12 @@ int scanner(tokentype& tt, string& w)
   
   if( word( w ) ) // If w is a Japanese word
   {
-    // TODO add more checks.
-    tt = WORD1; // Placeholder
+    // TODO Checks incomplete.
+    // These are how the checks should be handled.
+    // Check for VERB, VERBNEG, etc...
+    // Check for WORD2
+    // Check for WORD1
+    tt = WORD1;
   }
   else // If w is just a peroid
   if( period( w ) )
