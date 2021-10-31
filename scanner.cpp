@@ -174,8 +174,34 @@ int scanner(tokentype& tt, string& w)
   
   if( word( w ) ) // If w is a Japanese word
   {
-    // TODO add more checks.
-    tt = WORD1; // Placeholder
+    // Then check what exactly w is.
+    // This if then else statement will set tt to what word is.
+
+    // TODO Set tt to VERB. ----------------------------------------------------------------
+    // TODO Set tt to VERBNEG. -------------------------------------------------------------
+    // TODO Set tt to VERBPAST. ------------------------------------------------------------
+    // TODO Set tt to VERBPASTNEG. ---------------------------------------------------------
+    if( w.compare( "desu" ) == 0 ) // If w is desu, then w is a "IS" word.
+        tt = IS; // Return the IS type.
+    else // If w is deshita, then w is a "WAS" word.
+    if( w.compare( "deshita" ) == 0 )
+        tt = WAS; // Return the WAS type.
+    else // If w is o, then w is an OBJECT word.
+    if( w.compare( "o" ) == 0 )
+        tt = OBJECT; // Return the OBJECT type.
+    else // If w is wa, then w is a SUBJECT word.
+    if( w.compare( "wa" ) == 0 )
+        tt = SUBJECT; // Return the SUBJECT type.
+    else // If w is ni, then w is a DESTINATION word.
+    if( w.compare( "ni" ) == 0 )
+        tt = DESTINATION; // Return the DESTINATION type.
+    // TODO Set tt to PRONOUN. --------------------------------------------------------------
+    else // If w is mata, soshite, shikashi, and dakara then w is a CONNECTOR word.
+    if( w.compare( "mata" ) == 0 || w.compare( "soshite" ) == 0  || w.compare( "shikashi" ) == 0 || w.compare( "dakara" ) == 0 )
+        tt = CONNECTOR; // Return the CONNECTOR type.
+    // TODO Set tt to WORD2. ----------------------------------------------------------------
+    else // If w is not WORD2, then w is WORD1
+        tt = WORD1; // Return the WORD1 type.
   }
   else // If w is just a peroid
   if( period( w ) )
@@ -192,16 +218,15 @@ int scanner(tokentype& tt, string& w)
      one after another (if-then-else).
      Generate a lexical error message if both DFAs failed.
      Let the tokentype be ERROR in that case.
-
   3. If it was a word,
      check against the reservedwords list.
      If not reserved, tokentype is WORD1 or WORD2
      decided based on the last character.
-
   4. Return the token type & string  (pass by reference)
   */
 
 }//the end of scanner
+
 
 
 
