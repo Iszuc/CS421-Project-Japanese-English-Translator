@@ -227,9 +227,6 @@ int scanner(tokentype& tt, string& w)
 
 }//the end of scanner
 
-
-
-
 // The temporary test driver to just call the scanner repeatedly  
 // This will go away after this assignment
 // DO NOT CHANGE THIS!!!!!! 
@@ -260,4 +257,3 @@ int main()
    fin.close();
 
 }// end
-
