@@ -12,38 +12,118 @@ using namespace std;
 // --------- Two DFAs ---------------------------------
 
 // WORD DFA 
-// Done by: **
-// RE:   **
+// Done by: ** Isaac Sayasane
+// RE:   ** (V | Vn | consonant V | consonant V n | consonant-pair V |
+//          consonant-pair V n)^+
 bool word (string s)
 {
 
   int state = 0;
   int charpos = 0;
   /* replace the following todo the word dfa  */
+  /*State names to numbers
+    q0 = 0   qc = 1   qs = 2
+    qsa = 3  qt = 4   qy = 5
+    q0q1 = 6
+   */
+  
+  //character "arrays"
+  string V = "aiueoIE";
+  string endConsonants = "dwzyj";
+  string startConsonants = "bghkmnpr";
+  
   while (s[charpos] != '\0') 
     {
-      if (state == 0 && s[charpos] == 'a')
+      //Trs q0
+      if (state == 0 && s[charpos] == 'c')
+      state = 2;
+      else
+      if (state == 0 && s[charpos] == 's')
+      state = 3;
+      else
+      if (state == 0 && s[charpos] == 't')
+      state = 4;
+      else
+      if (state == 0 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+      if (state == 0 && endConsonants.find(s[charpos]) != string::npos)
+      state = 3;
+      else
+      if (state == 0 && startConsonants.find(s[charpos]) != string::npos)
+      state = 5;
+      else
+
+      //Trs qc
+      if (state == 1 && s[charpos] == 'h')
+      state = 3;
+      else
+	
+      //Trs qs
+      if (state == 2 && s[charpos] == 'h')
+      state = 3;
+      else
+      if (state == 2 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+
+      //Trs qsa
+      if (state == 3 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+
+      //Trs qt
+      if (state == 4 && s[charpos] == 's')
+      state = 3;
+      else
+      if (state == 4 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+
+      //Trs qy
+      if (state == 5 && s[charpos] == 'y')
+      state = 3;
+      else
+      if (state == 5 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+
+      //Trs q0q1
+      if (state == 6 && s[charpos] == 'n')
+      state = 0;
+      else
+      if (state == 6 && s[charpos] == 'c')
       state = 1;
       else
-      if (state == 1 && s[charpos] == 'b')
+      if (state == 6 && s[charpos] == 's')
       state = 2;
       else
-      if (state == 2 && s[charpos] == 'b')
-      state = 2;
+      if (state == 6 && s[charpos] == 't')
+      state = 4;
       else
-	  return(false);
+      if (state == 6 && V.find(s[charpos]) != string::npos)
+      state = 6;
+      else
+      if (state == 6 && endConsonants.find(s[charpos]) != string::npos)
+      state = 3;
+      else
+      if (state == 6 && startConsonants.find(s[charpos]) != string::npos)
+      state = 5;
+      else
+	return(false);
       charpos++;
     }//end of while
 
   // where did I end up????
-  if (state == 2) return(true);  // end in a final state
-   else return(false);
+  if (state == 0 || state == 6) return(true);  // end in a final state
+  else return(false);                          // (q0 or q0q1)
 }
 
 // PERIOD DFA 
-// Done by: **
+// Done by: ** Isaac Sayasane
 bool period (string s)
 {  // complete this **
+  return s == ".";
 }
 
 // ------ Three  Tables -------------------------------------
