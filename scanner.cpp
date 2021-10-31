@@ -124,7 +124,21 @@ bool word (string s)
 // Done by: ** Isaac Sayasane
 bool period (string s)
 {  // complete this **
-  return s == ".";
+  int state = 0;
+  int charpos = 0;
+
+  while (s[charpos] != '\0')
+    {
+      if (state == 0 && s[charpos] == '.')
+      state = 1;
+      else
+	return(false);
+      charpos++;
+    } //end of while
+
+// where did I end up????
+if (state == 1) return(true);  // end in a final state
+ else return(false);
 }
 
 // ------ Three  Tables -------------------------------------
