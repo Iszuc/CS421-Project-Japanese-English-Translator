@@ -31,6 +31,7 @@ bool word (string s)
   string V = "aiueoIE";
   string endConsonants = "dwzyj";
   string startConsonants = "bghkmnpr";
+  string start2Consonants = "bghkmpr";
   
   while (s[charpos] != '\0') 
     {
@@ -107,7 +108,7 @@ bool word (string s)
       if (state == 6 && endConsonants.find(s[charpos]) != string::npos)
       state = 3;
       else
-      if (state == 6 && startConsonants.find(s[charpos]) != string::npos)
+      if (state == 6 && start2Consonants.find(s[charpos]) != string::npos)
       state = 5;
       else
 	return(false);
