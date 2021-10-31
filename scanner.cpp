@@ -37,10 +37,10 @@ bool word (string s)
     {
       //Trs q0
       if (state == 0 && s[charpos] == 'c')
-      state = 2;
+      state = 1;
       else
       if (state == 0 && s[charpos] == 's')
-      state = 3;
+      state = 2;
       else
       if (state == 0 && s[charpos] == 't')
       state = 4;
