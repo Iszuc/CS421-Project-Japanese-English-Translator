@@ -193,7 +193,7 @@ void scanner(tokentype& tt, string& w)
   if( w == "eofm" ) // If w is eofm then,
   {
     tt = EOFM; // The token type is EOFM.
-    return 0; // Return now.
+    return; // Return now.
   }
   else
   if( word( w ) ) // If w is a Japanese word
