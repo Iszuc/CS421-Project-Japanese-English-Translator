@@ -195,7 +195,7 @@ void scanner(tokentype& tt, string& w)
     tt = EOFM; // The token type is EOFM.
     return 0; // Return now.
   }
-
+  else
   if( word( w ) ) // If w is a Japanese word
   {
     // Compare w against each reserved word.
