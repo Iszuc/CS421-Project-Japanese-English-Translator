@@ -11,7 +11,7 @@ using namespace std;
 
 // --------- Two DFAs ---------------------------------
 
-// WORD DFA 
+// WORD DFA
 // Done by: ** Isaac Sayasane
 // RE:   ** (V | Vn | consonant V | consonant V n | consonant-pair V |
 //          consonant-pair V n)^+
@@ -26,14 +26,14 @@ bool word (string s)
     qsa = 3  qt = 4   qy = 5
     q0q1 = 6
    */
-  
+
   //character "arrays"
   string V = "aiueoIE";
   string endConsonants = "dwzyj";
   string startConsonants = "bghkmnpr";
   string start2Consonants = "bghkmpr";
-  
-  while (s[charpos] != '\0') 
+
+  while (s[charpos] != '\0')
     {
       //Trs q0
       if (state == 0 && s[charpos] == 'c')
@@ -59,7 +59,7 @@ bool word (string s)
       if (state == 1 && s[charpos] == 'h')
       state = 3;
       else
-	
+
       //Trs qs
       if (state == 2 && s[charpos] == 'h')
       state = 3;
@@ -120,7 +120,7 @@ bool word (string s)
   else return(false);                          // (q0 or q0q1)
 }
 
-// PERIOD DFA 
+// PERIOD DFA
 // Done by: ** Isaac Sayasane
 bool period (string s)
 {  // complete this **
@@ -143,98 +143,93 @@ if (state == 1) return(true);  // end in a final state
 
 // ------ Three  Tables -------------------------------------
 
-// TABLES Done by: ** Michael Snodgrass
+// TABLES Done by: ** Michael Snodgrass (tokentype and tokenname), Logan Schlick (reservedWords)
 
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
 enum tokentype {ERROR, WORD1, WORD2, PERIOD, VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, EOFM};
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "EOFM" }; 
+string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "EOFM" };
 
-// ** Need the reservedwords table to be set up here. 
+// ** Need the reservedwords table to be set up here.
 // ** Do not require any file input for this. Hard code the table.
 // ** a.out should work without any additional files.
 
+std::pair<string, tokentype> reservedWords[19] =
+{
+	{"masu", VERB},
+	{"masen", VERBNEG},
+	{"mashita", VERBPAST},
+	{"masendeshita", VERBPASTNEG},
+	{"desu", IS},
+	{"deshita", WAS},
+	{"o", OBJECT},
+	{"wa", SUBJECT},
+	{"ni", DESTINATION},
+	{"watashi", PRONOUN},
+	{"anata", PRONOUN},
+	{"kare", PRONOUN},
+	{"kanoio", PRONOUN},
+	{"sore", PRONOUN},
+	{"mata", CONNECTOR},
+	{"soshite", CONNECTOR},
+	{"shikashi", CONNECTOR},
+	{"dakara", CONNECTOR},
+	{"eofm", EOFM}
+};
 
-// ------------ Scaner and Driver ----------------------- 
+// ------------ Scaner and Driver -----------------------
 
 ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by: Michael Snodgrass
-int scanner(tokentype& tt, string& w)
+// ** Done by: Michael Snodgrass & Logan Schlick
+void scanner(tokentype& tt, string& w)
 {
   // ** Grab the next word from the file via fin
   fin >> w;
-  
-  // 1. If it is eofm, return right now.   
-  if( w.compare( "eofm" ) == 0 )
-    return 0; // NOTE: Michael Snodgrass - I do not know what to return for this actually since scanner call is not being used as a parameter.
-  
+
   if( word( w ) ) // If w is a Japanese word
   {
-    // Then check what exactly w is.
-    // This if then else statement will set tt to what word is.
-
-    // TODO Set tt to VERB. ----------------------------------------------------------------
-    // TODO Set tt to VERBNEG. -------------------------------------------------------------
-    // TODO Set tt to VERBPAST. ------------------------------------------------------------
-    // TODO Set tt to VERBPASTNEG. ---------------------------------------------------------
-    if( w.compare( "desu" ) == 0 ) // If w is desu, then w is a "IS" word.
-        tt = IS; // Return the IS type.
-    else // If w is deshita, then w is a "WAS" word.
-    if( w.compare( "deshita" ) == 0 )
-        tt = WAS; // Return the WAS type.
-    else // If w is o, then w is an OBJECT word.
-    if( w.compare( "o" ) == 0 )
-        tt = OBJECT; // Return the OBJECT type.
-    else // If w is wa, then w is a SUBJECT word.
-    if( w.compare( "wa" ) == 0 )
-        tt = SUBJECT; // Return the SUBJECT type.
-    else // If w is ni, then w is a DESTINATION word.
-    if( w.compare( "ni" ) == 0 )
-        tt = DESTINATION; // Return the DESTINATION type.
-    // TODO Set tt to PRONOUN. --------------------------------------------------------------
-    else // If w is mata, soshite, shikashi, and dakara then w is a CONNECTOR word.
-    if( w.compare( "mata" ) == 0 || w.compare( "soshite" ) == 0  || w.compare( "shikashi" ) == 0 || w.compare( "dakara" ) == 0 )
-        tt = CONNECTOR; // Return the CONNECTOR type.
-    // TODO Set tt to WORD2. ----------------------------------------------------------------
-    else // If w is not WORD2, then w is WORD1
-        tt = WORD1; // Return the WORD1 type.
+    // Compare w against each reserved word.
+    for(int i = 0; i < 19; i++)
+    {
+      if(reservedWords[i].first == w) // If w is a reserved word,
+      {
+        tt = reservedWords[i].second; // Set tt to the token type of the reserved word.
+	      return; // End the function early.
+      }
+    }
+    // If this point is reached, then w is not a reserved word.
+    if(w.back() == 'I' || w.back() == 'E') // If w ends in I or E,
+    {
+      tt = WORD2; // Then it's token type is WORD2.
+    }
+    else // If w ends in a lowercase vowel,
+    {
+      tt = WORD1; // Then it's token type is WORD1.
+    }
   }
-  else // If w is just a peroid
+  else // If w is just a period
   if( period( w ) )
   {
-    tt = PERIOD; // Set the token type to error.
+    tt = PERIOD; // Set the token type to period.
   }
   else // If w is unrecognized.
   {
     tt = ERROR; // Set the token type to error.
   }
-  
-  /*  **
-  2. Call the token functions (word and period) 
-     one after another (if-then-else).
-     Generate a lexical error message if both DFAs failed.
-     Let the tokentype be ERROR in that case.
-  3. If it was a word,
-     check against the reservedwords list.
-     If not reserved, tokentype is WORD1 or WORD2
-     decided based on the last character.
-  4. Return the token type & string  (pass by reference)
-  */
-
 }//the end of scanner
 
-// The temporary test driver to just call the scanner repeatedly  
+// The temporary test driver to just call the scanner repeatedly
 // This will go away after this assignment
-// DO NOT CHANGE THIS!!!!!! 
+// DO NOT CHANGE THIS!!!!!!
 // Done by:  Rika
 int main()
 {
   tokentype thetype;
-  string theword; 
+  string theword;
   string filename;
 
   cout << "Enter the input file name: ";
@@ -246,11 +241,11 @@ int main()
    while (true)
     {
        scanner(thetype, theword);  // call the scanner which sets
-                                   // the arguments  
+                                   // the arguments
        if (theword == "eofm") break;  // stop now
 
        cout << "Type is:" << tokenName[thetype] << endl;
-       cout << "Word is:" << theword << endl;   
+       cout << "Word is:" << theword << endl;
     }
 
    cout << "End of file is encountered." << endl;
