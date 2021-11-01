@@ -189,6 +189,12 @@ void scanner(tokentype& tt, string& w)
 {
   // ** Grab the next word from the file via fin
   fin >> w;
+  
+  if( w == "eofm" ) // If w is eofm then,
+  {
+    tt = EOFM; // The token type is EOFM.
+    return 0; // Return now.
+  }
 
   if( word( w ) ) // If w is a Japanese word
   {
