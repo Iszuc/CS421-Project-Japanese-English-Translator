@@ -18,7 +18,7 @@ o	Member C tasks(word, period)- who: Isaac Sayasane
 4.     Your program works correctly on scannertest1 and scannertest2? Michael Snodgrass, Logan Schlick
 
 5.     Any other remarks.
-	   Michael Snodgrass - I should be more careful on giving instructions.
+	   Michael Snodgrass - I should be more careful on giving instructions. I will also remind other group members to work on time.
 
 
 checkIt_LK in 24 hours and immediately correct and re-submit.
