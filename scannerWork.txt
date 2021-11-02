@@ -7,7 +7,7 @@ Group#: 13
 Must have divided the work as specified by the assignment
 sheet. If the member did not fully contribute to the assigned part, 
 do not list his/her name!!!!!
-o	Member A tasks(DFA, tables, scanner)- who:
+o	Member A tasks(DFA, tables, scanner)- who: Michael Snodgrass
 o	Member B tasks(DFA, tables, scanner)- who: Logan Schlick
 o	Member C tasks(word, period)- who: Isaac Sayasane
 
@@ -18,7 +18,7 @@ o	Member C tasks(word, period)- who: Isaac Sayasane
 4.     Your program works correctly on scannertest1 and scannertest2? Michael Snodgrass, Logan Schlick
 
 5.     Any other remarks.
-	   Michael Snodgrass - I realized that I need to be more considerate on sharing the work. (I did the tables and the scanner, and the NFA-to-DFA but not the DFA diagram).
+	   Michael Snodgrass - I should be more careful on giving instructions.
 
 
 checkIt_LK in 24 hours and immediately correct and re-submit.
