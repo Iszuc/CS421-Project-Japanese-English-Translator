@@ -224,6 +224,8 @@ void scanner(tokentype& tt, string& w)
   }
   else // If w is unrecognized.
   {
+    // Tell the user that there had been a Lexical error.
+    cout << "Lexical error: " << w << " is not a valid token" << endl;
     tt = ERROR; // Set the token type to error.
   }
 }//the end of scanner
