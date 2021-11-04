@@ -3,6 +3,8 @@ Fill this out and submit this with the executable.
 
 Group#: 13
 
+IMPORTANT NOTE: This is being posted just in case if the instructor wants the fixed executable, even if it is after the due date.
+
 1.	Indicate who did what by giving names.
 Must have divided the work as specified by the assignment
 sheet. If the member did not fully contribute to the assigned part, 
@@ -19,7 +21,6 @@ o	Member C tasks(word, period)- who: Isaac Sayasane
 
 5.     Any other remarks.
 	   Michael Snodgrass - I should be more careful on giving instructions. I will also remind other group members to work on time.
-	   IMPORTANT NOTE: This is being posted just in case if the instructor wants the fix. Sorry about the missing feature.
 
 
 checkIt_LK in 24 hours and immediately correct and re-submit.
