@@ -1,3 +1,5 @@
+#include "scanner.h"
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -145,8 +147,7 @@ if (state == 1) return(true);  // end in a final state
 
 // TABLES Done by: ** Michael Snodgrass (tokentype and tokenname), Logan Schlick (reservedWords)
 
-// ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
-enum tokentype {ERROR, WORD1, WORD2, PERIOD, VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, EOFM};
+// tokentype moved to header.
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
 string tokenName[30] = { "ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "EOFM" };
@@ -229,34 +230,3 @@ void scanner(tokentype& tt, string& w)
     tt = ERROR; // Set the token type to error.
   }
 }//the end of scanner
-
-// The temporary test driver to just call the scanner repeatedly
-// This will go away after this assignment
-// DO NOT CHANGE THIS!!!!!!
-// Done by:  Rika
-int main()
-{
-  tokentype thetype;
-  string theword;
-  string filename;
-
-  cout << "Enter the input file name: ";
-  cin >> filename;
-
-  fin.open(filename.c_str());
-
-  // the loop continues until eofm is returned.
-   while (true)
-    {
-       scanner(thetype, theword);  // call the scanner which sets
-                                   // the arguments
-       if (theword == "eofm") break;  // stop now
-
-       cout << "Type is:" << tokenName[thetype] << endl;
-       cout << "Word is:" << theword << endl;
-    }
-
-   cout << "End of file is encountered." << endl;
-   fin.close();
-
-}// end

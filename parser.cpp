@@ -1,3 +1,5 @@
+#include "scanner.h"
+
 #include<iostream>
 #include<fstream>
 #include<string>
