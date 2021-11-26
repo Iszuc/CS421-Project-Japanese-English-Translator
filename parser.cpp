@@ -26,8 +26,21 @@ using namespace std;
 // Type of error: ** Lexer error.
 // Done by: Michael Snodgrass 
 void syntaxerror1( tokentype expectedTokenType, string savedLexeme ) {
+  // This makes sure that expectedTokenType has a valid enum state
+  if( expectedTokenType > tokentype::EOFM || expectedTokenType < tokentype::ERROR )
+  {
+    // If this branch is taken then there is something wrong with this program.
+    
+    // The programmer needs to know this error.
+    cerr << "PROGRAMMER ERROR: for void syntaxerror1( ... ) the parameter tokentype expectedTokenType is " << expectedTokenType
+         << " which is not in the enum tokentype." << endl;
+    
+    // To prevent an out of bounds case we set expectedTokenType to ERROR. 
+    expectedTokenType = tokentype::ERROR; 
+  }
+  
   // Tell the user that the syntax error is found.
-  cout << "SYNTAX ERROR: expected " << expectedTokenType << " but found " << savedLexeme << endl;
+  cout << "SYNTAX ERROR: expected " << tokenName[ expectedTokenType ] << " but found " << savedLexeme << endl;
   
   // Exit the program.
   exit(1);
