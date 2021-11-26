@@ -23,9 +23,16 @@ using namespace std;
 // ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.  
 
-// Type of error: **
-// Done by: ** 
-void syntaxerror1(  ){    }
+// Type of error: ** Lexer error.
+// Done by: Michael Snodgrass 
+void syntaxerror1( tokentype expectedTokenType, string savedLexeme ) {
+  // Tell the user that the syntax error is found.
+  cout << "SYNTAX ERROR: expected " << expectedTokenType << " but found " << savedLexeme << endl;
+  
+  // Exit the program.
+  exit(1);
+}
+
 // Type of error: **
 // Done by: ** 
 void syntaxerror2(  ) {    }
