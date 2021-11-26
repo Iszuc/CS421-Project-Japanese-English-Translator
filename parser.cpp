@@ -69,13 +69,30 @@ bool match(tokentype expected) {}
 
 // Grammar: **
 // Done by: **
+void story() {}
+
+// Grammar: **
+// Done by: **
+void sentence() {}
+
+// Grammar: **
+// Done by: **
+void afterSubject() {}
+
+// Grammar: **
+// Done by: **
+void afterNoun() {}
+
+// Grammar: **
+// Done by: **
+void afterObject() {}
 
 string filename;
 
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
-// Done by:  **
+// Done by: Michael Snodgrass
 int main()
 {
   cout << "Enter the input file name: ";
