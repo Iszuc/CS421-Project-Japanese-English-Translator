@@ -13,6 +13,8 @@ extern string tokenName[];
 
 extern std::pair<string, tokentype> reservedWords[];
 
+extern ifstream fin;
+
 bool word(string s);
 bool period(string s);
 void scanner(tokentype& tt, string& w);

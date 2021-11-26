@@ -35,11 +35,11 @@ void syntaxerror2(  ) {    }
 
 // Purpose: **
 // Done by: **
-token_type next_token(){}
+tokentype next_token(){}
 
 // Purpose: **
 // Done by: **
-boolean match(tokentype expected) {}
+bool match(tokentype expected) {}
 
 // ----- RDP functions - one per non-term -------------------
 
