@@ -158,9 +158,25 @@ void noun() {}
 // Done by: **
 void verb() {}
 
-// Grammar: **
-// Done by: **
-void be() {}
+// Grammar: <be> := IS | WAS
+// Done by: Michael Snodgrass
+void be() {
+  // Tell the user that the program is now processing forms of be.
+  cout << "Processing <be>" << endl;
+  
+  switch( next_token() )
+  {
+    case tokentype::IS:
+      match( tokentype::IS );
+      break;
+    case tokentype::WAS:
+      match( tokentype::WAS );
+      break;
+    default:
+      cout << "TODO Add a syntax error!" << endl;
+      exit( 1 );
+  };
+}
 
 // Grammar: **
 // Done by: **
