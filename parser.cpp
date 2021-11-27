@@ -66,31 +66,46 @@ bool match(tokentype expected) {}
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
+void s();
+void afterSubject();
+void afterNoun();
+void afterObject();
+void noun();
+void verb();
+void be();
+void tense();
 
 // Grammar: <story> := <s> { <s> }
 // Done by: Michael Snodgrass
 void story() {
   // Tell the user that the program is now processing story.
-  cout << "Processing <story>" << endl;
+  cout << "Processing <story>\n" << endl;
   
+  // <s>
   // First process sentence which is <s>
-  s(); // <s>
-  
+  s();
+
+  // { <s> }  
   // Loop until the end conditions are meet.
-  while( true ) // { <s> }
+  while( true )
   {
     // Check if the next token to be read has this.
     switch( next_token() )
     {
+      // Check if this is actually the end.
+      case tokentype::EOFM:
+        // Exit the program peacefully.
+        return;
       // next_token has to be CONNECTOR or WORD1 or PRONOUN in order to be s, sentence.
       case tokentype::CONNECTOR:
       case tokentype::WORD1:
       case tokentype::PRONOUN:
         s(); // Call s to check if this is a sentence.
         break; // exit this switch statement for now.
+      // if next_token is something else exit the program.
       default:
-        // Exit the story function for it is successfully been read.
-        return;
+        cout << "TODO Add a syntax error!" << endl;
+        exit(1);
     }
   }
 }
