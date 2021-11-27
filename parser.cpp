@@ -23,7 +23,7 @@ using namespace std;
 // ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.  
 
-// Type of error: ** MAYBE THIS IS A LEXICAL ERROR.
+// Type of error: Lexical Error.
 // Done by: Michael Snodgrass 
 void syntaxerror1( string savedLexeme, tokentype expectedTokenType ) {
   
