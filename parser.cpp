@@ -261,18 +261,34 @@ string filename;
 // Done by: Michael Snodgrass
 int main()
 {
+  // Tell the user to input a file name.
   cout << "Enter the input file name: ";
+  
+  // Get the filename from user input.
   cin >> filename;
-  fin.open(filename.c_str());
 
-  //** calls the <story> to start parsing
-  story();
+  // Now open the file.
+  fin.open(filename.c_str());
   
-  //** closes the input file
-  fin.close();
-  
-  // I did not forget to at least return something.
-  return 0;
+  if( fin.is_open() )
+  {
+    // call the <story> to start parsing
+    story();
+    
+    // close the input file.
+    fin.close();
+    
+    // I did not forget to at least return something.
+    return 0;
+  }
+  else // The file is not open.
+  {
+    // Tell the user that the file cannot be opened.
+    cout << "Error: cannot open \"" << filename << "\"" << endl;
+    
+    // Return a zero.
+    return 0;
+  }
 }// end
 //** require no other input files!
 //** syntax error EC requires producing errors.txt of error messages
