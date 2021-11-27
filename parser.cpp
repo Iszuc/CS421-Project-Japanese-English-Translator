@@ -47,20 +47,58 @@ void syntaxerror1( string savedLexeme, tokentype expectedTokenType ) {
   exit(1);
 }
 
-// Type of error: **
-// Done by: ** 
-void syntaxerror2(  ) {    }
+// Type of error: ** Parser error
+// Done by: ** Isaac Sayasane 
+void syntaxerror2(string savedLexeme, string parserFunction)
+{
+  cout << "SYNTAX ERROR: unexpected " << savedLexeme << " found in "
+       << parserFunction << endl;
+  exit(1);
+}
 
 // ** Need the updated match and next_token with 2 global vars
 // saved_token and saved_lexeme
 
-// Purpose: **
-// Done by: **
-tokentype next_token(){}
+tokentype saved_token;
+string saved_lexeme;
+bool token_available;
 
-// Purpose: **
-// Done by: **
-bool match(tokentype expected) {}
+// Purpose: ** Looks ahead to see what token comes next from the scanner.
+// Done by: ** Isaac Sayasane
+tokentype next_token()
+{
+  if (!token_available)   // if there is no saved token yet
+    { 
+      scanner(saved_token, saved_lexeme);   // call scanner to grab a new token
+                                          // saved_token is the token type and 
+                                    // saved_lexeme is the word that is read in
+      token_available = true;          // mark that fact that you have saved it
+      //TODO: save the string returned from the scanner in saved_lexme
+
+      if (saved_token == ERROR)
+	{ 
+	  syntaxerror1(saved_lexeme, saved_token);
+	}
+    }
+  return saved_token;    // return the saved token
+}
+
+// Purpose: ** Checks and eats up the expected token.
+// Done by: ** Isaac Sayasane
+bool match(tokentype expected) 
+{
+  if (next_token() != expected)   // mismatch has occurred with the next token
+    {
+      // calls a syntax error function here to generate a syntax error message here and do recovery
+      syntaxerror2(saved_lexeme, "match");
+	}
+  else  // match has occurred
+    {
+      token_available = false;                // eat up the token
+      cout << "Matched " << expected << endl; // display type for tracing
+      return true;                            // say there was a match
+    } 
+}
 
 // ----- RDP functions - one per non-term -------------------
 
@@ -72,6 +110,7 @@ bool match(tokentype expected) {}
 void s();
 void afterSubject();
 void afterNoun();
+void afterDestination();
 void afterObject();
 void noun();
 void verb();
@@ -174,9 +213,36 @@ void afterSubject() {
   }
 }
 
-// Grammar: **
-// Done by: **
-void afterNoun() {}
+// Grammar: <after noun> := <be> PERIOD | DESTINATION <after destination>
+//                        | OBJECT <after object>
+// Done by: ** Isaac Sayasane
+void afterNoun() 
+{
+  cout << "Processing <after noun>" << endl;
+  
+  switch(next_token())
+    {
+      // <be> PERIOD
+    case tokentype::IS:
+    case tokentype::WAS:
+      be();
+      match(tokentype::PERIOD);
+
+      // DESTINATION <after destination>
+    case tokentype::DESTINATION:
+      match(tokentype::DESTINATION);
+      afterDestination();
+      
+      //OBJECT <after object>
+    case tokentype::OBJECT:
+      match(tokentype::OBJECT);
+      afterObject();
+      
+    default:
+      syntaxerror2(saved_lexeme, "afterNoun");
+      exit(1);
+    }
+}
 
 // Grammar: <after object> := [<noun> DESTINATION] <verb> <tense> PERIOD
 // Done by: Michael Snodgrass
@@ -215,13 +281,45 @@ void afterObject() {
   match( tokentype::PERIOD );
 }
 
-// Grammar: **
-// Done by: **
-void noun() {}
+// Grammar: ** WORD1 | PRONOUN
+// Done by: ** Isaac Sayasane
+void noun() 
+{
+  cout << "Processing <noun>" << endl;
+  
+  switch(next_token())
+    {
+      //WORD1
+    case tokentype::WORD1:
+      match(tokentype::WORD1);
+      
+      //PRONOUN
+    case tokentype::PRONOUN:
+      match(tokentype::PRONOUN);
 
-// Grammar: **
-// Done by: **
-void verb() {}
+    default:
+      syntaxerror2(saved_lexeme, "noun");
+      exit(1);
+    }
+}
+
+// Grammar: ** WORD2
+// Done by: ** Isaac Sayasane
+void verb() 
+{
+  cout << "Processing <verb>" << endl;
+
+  switch(next_token())
+    {
+      //WORD2
+    case tokentype::WORD2:
+      match(tokentype::WORD2);
+      
+    default:
+      syntaxerror2(saved_lexeme, "verb");
+      exit(1);
+    }
+}
 
 // Grammar: <be> := IS | WAS
 // Done by: Michael Snodgrass
@@ -250,9 +348,35 @@ void be() {
   };
 }
 
-// Grammar: **
-// Done by: **
-void tense() {}
+// Grammar: ** VERBPAST | VERBPASTNEG | VERB | VERBNEG
+// Done by: ** Isaac Sayasane
+void tense() 
+{
+  cout << "Processing <tense>" << endl;
+
+  switch(next_token())
+    {
+      // VERBPAST
+    case tokentype::VERBPAST:
+      match(tokentype::VERBPAST);
+
+      // VERBPASTNEG
+    case tokentype::VERBPASTNEG:
+      match(tokentype::VERBPASTNEG);
+
+      // VERB
+    case tokentype::VERB:
+      match(tokentype::VERB);
+
+      // VERBNEG
+    case tokentype::VERBNEG:
+      match(tokentype::VERBNEG);
+
+    default:
+      syntaxerror2(saved_lexeme, "tense");
+      exit(1);
+    }
+}
 
 string filename;
 
