@@ -23,7 +23,7 @@ using namespace std;
 // ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.  
 
-// Type of error: ** Lexer error.
+// Type of error: ** PROBABLY NOT A LEXICAL ERROR.
 // Done by: Michael Snodgrass 
 void syntaxerror1( tokentype expectedTokenType, string savedLexeme ) {
   // This makes sure that expectedTokenType has a valid enum state
