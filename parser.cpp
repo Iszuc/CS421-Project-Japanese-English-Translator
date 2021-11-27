@@ -134,13 +134,42 @@ void s() {
   match( tokentype::SUBJECT );
   
   // <after subject>
-  // See if afterSubject is called.
+  // This will call afterSubject to check if it is an afterSubject.
   afterSubject();
 }
 
-// Grammar: **
-// Done by: **
-void afterSubject() {}
+// Grammar: <after subject> := <verb> <tense> PERIOD | <noun> <after noun>
+// Done by: Michael Snodgrass
+void afterSubject() {
+  // Tell the user that the program is now processing a sentence.
+  cout << "Processing <after subject>" << endl;
+  
+  switch( next_token() )
+  {
+    // <verb> <tense> PERIOD
+    // Since <verb> only has WORD2 only check WORD2.
+    case tokentype::WORD2:
+      // <verb>
+      verb();
+      // <tense>
+      tense();
+      // PERIOD
+      match( tokentype::PERIOD );
+    // <noun> <after noun>
+    // Since <noun> can be WORD1 or PRONOUN, check WORD1 and PRONOUN.
+    case tokentype::WORD1:
+    case tokentype::PRONOUN:
+      // <noun>
+      noun();
+      // <after noun>
+      afterNoun();
+    // Neither the two cases.
+    default:
+      // Exit the program for failing to read after the subject.
+      cout << "TODO Add a syntax error!" << endl;
+      exit( 1 );
+  }
+}
 
 // Grammar: **
 // Done by: **
