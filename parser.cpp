@@ -23,7 +23,7 @@ using namespace std;
 // ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.  
 
-// Type of error: ** PROBABLY NOT A LEXICAL ERROR.
+// Type of error: ** MAYBE THIS IS A LEXICAL ERROR.
 // Done by: Michael Snodgrass 
 void syntaxerror1( tokentype expectedTokenType, string savedLexeme ) {
   // This makes sure that expectedTokenType has a valid enum state
@@ -66,6 +66,8 @@ bool match(tokentype expected) {}
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
+
+// I added prototypes.
 void s();
 void afterSubject();
 void afterNoun();
@@ -175,9 +177,42 @@ void afterSubject() {
 // Done by: **
 void afterNoun() {}
 
-// Grammar: **
-// Done by: **
-void afterObject() {}
+// Grammar: <after object> := [<noun> DESTINATION] <verb> <tense> PERIOD
+// Done by: Michael Snodgrass
+void afterObject() {
+  // Tell the user that the program is now processing a sentence.
+  cout << "Processing <after object>" << endl;
+  
+  // [<noun> DESTINATION]
+  switch( next_token() )
+  {
+    // Check if the next output will be a noun.
+    case tokentype::WORD1:
+    case tokentype::PRONOUN:
+      // <noun>
+      noun();
+      
+      // DESTINATION
+      match( tokentype::DESTINATION );
+    // If not then do not call a syntax error.
+    default:
+      // This time do not call syntax error.
+      // If I had to check for only one tokentype this would have been an if statement.
+      // It is only a choice in style and effiency.
+      break;
+  }
+  
+  // <verb>
+  // Call the verb function.
+  verb();
+  
+  // <tense>
+  // Call the tense funciton.
+  tense();
+
+  // Finally match the token to the PERIOD.
+  match( tokentype::PERIOD );
+}
 
 // Grammar: **
 // Done by: **
