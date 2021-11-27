@@ -25,7 +25,8 @@ using namespace std;
 
 // Type of error: ** MAYBE THIS IS A LEXICAL ERROR.
 // Done by: Michael Snodgrass 
-void syntaxerror1( tokentype expectedTokenType, string savedLexeme ) {
+void syntaxerror1( string savedLexeme, tokentype expectedTokenType ) {
+  
   // This makes sure that expectedTokenType has a valid enum state
   if( expectedTokenType > tokentype::EOFM || expectedTokenType < tokentype::ERROR )
   {
