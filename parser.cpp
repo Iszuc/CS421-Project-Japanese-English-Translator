@@ -100,8 +100,13 @@ int main()
   fin.open(filename.c_str());
 
   //** calls the <story> to start parsing
-  //** closes the input file 
-
+  story();
+  
+  //** closes the input file
+  fin.close();
+  
+  // I did not forget to at least return something.
+  return 0;
 }// end
 //** require no other input files!
 //** syntax error EC requires producing errors.txt of error messages
