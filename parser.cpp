@@ -164,15 +164,22 @@ void be() {
   // Tell the user that the program is now processing forms of be.
   cout << "Processing <be>" << endl;
   
+  // IS | WAS
   switch( next_token() )
   {
+    // IS
+    // If next_token is an IS type then match it.
     case tokentype::IS:
       match( tokentype::IS );
       break;
+    // WAS
+    // If next_token is a WAS type then match it.
     case tokentype::WAS:
       match( tokentype::WAS );
       break;
+    // If next_token is some other type then it is a syntax error.
     default:
+      // Throw a syntax error.
       cout << "TODO Add a syntax error!" << endl;
       exit( 1 );
   };
