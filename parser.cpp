@@ -73,8 +73,9 @@ tokentype next_token()
                                           // saved_token is the token type and 
                                     // saved_lexeme is the word that is read in
       token_available = true;          // mark that fact that you have saved it
-      //TODO: save the string returned from the scanner in saved_lexme
-
+      fin >> saved_lexeme;          //save the string returned from the scanner
+                                    //in saved_lexme
+     
       if (saved_token == ERROR)
 	{ 
 	  syntaxerror1(saved_lexeme, saved_token);
