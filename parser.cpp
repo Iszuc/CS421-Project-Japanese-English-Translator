@@ -73,7 +73,7 @@ void story() {}
 
 // Grammar: **
 // Done by: **
-void sentence() {}
+void s() {}
 
 // Grammar: **
 // Done by: **
@@ -86,6 +86,22 @@ void afterNoun() {}
 // Grammar: **
 // Done by: **
 void afterObject() {}
+
+// Grammar: **
+// Done by: **
+void noun() {}
+
+// Grammar: **
+// Done by: **
+void verb() {}
+
+// Grammar: **
+// Done by: **
+void be() {}
+
+// Grammar: **
+// Done by: **
+void tense() {}
 
 string filename;
 
