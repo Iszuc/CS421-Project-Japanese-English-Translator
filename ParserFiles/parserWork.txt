@@ -13,6 +13,11 @@ If the member did not fully contribute to the assigned part, do not list his/her
   Who wrote which parser functions? 
   functions             who
   ----------------      ----------
+  story()               Michael Snodgrass -- I choose all the functions with my name.
+  s()                   Michael Snodgrass
+  afterSubject()        Michael Snodgrass
+  afterObject()         Michael Snodgrass
+  be()                  Michael Snodgrass
 
 2.  Who came to the meeting to test the program together?
 
