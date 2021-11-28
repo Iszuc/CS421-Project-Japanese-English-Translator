@@ -61,7 +61,7 @@ void syntaxerror2(string savedLexeme, string parserFunction)
 
 tokentype saved_token;
 string saved_lexeme;
-bool token_available;
+bool token_available = false; // Set the intial value to false because next_token will automatically fill in saved_token and saved_lexeme.
 
 // Purpose: ** Looks ahead to see what token comes next from the scanner.
 // Done by: ** Isaac Sayasane
