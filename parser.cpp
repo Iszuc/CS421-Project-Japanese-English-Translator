@@ -147,8 +147,7 @@ void story() {
         break; // exit this switch statement for now.
       // if next_token is something else exit the program.
       default:
-        cout << "TODO Add a syntax error!" << endl;
-        exit(1);
+	syntaxerror2(saved_lexeme, "story");
     }
   }
 }
@@ -209,8 +208,7 @@ void afterSubject() {
     // Neither the two cases.
     default:
       // Exit the program for failing to read after the subject.
-      cout << "TODO Add a syntax error!" << endl;
-      exit( 1 );
+      syntaxerror2(saved_lexeme, "afterSubject");
   }
 }
 
@@ -344,8 +342,7 @@ void be() {
     // If next_token is some other type then it is a syntax error.
     default:
       // Throw a syntax error.
-      cout << "TODO Add a syntax error!" << endl;
-      exit( 1 );
+      syntaxerror2(saved_lexeme, "be");
   };
 }
 
