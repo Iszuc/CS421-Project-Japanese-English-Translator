@@ -112,7 +112,6 @@ bool match(tokentype expected)
 void s();
 void afterSubject();
 void afterNoun();
-void afterDestination();
 void afterObject();
 void noun();
 void verb();
