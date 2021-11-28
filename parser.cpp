@@ -96,7 +96,8 @@ bool match(tokentype expected)
   else  // match has occurred
     {
       token_available = false;                // eat up the token
-      cout << "Matched " << expected << endl; // display type for tracing
+      cout << "Matched " << tokenName[expected] << endl; // display type for 
+                                                         // tracing
       return true;                            // say there was a match
     } 
 }
@@ -227,10 +228,12 @@ void afterNoun()
       be();
       match(tokentype::PERIOD);
 
-      // DESTINATION <after destination>
+      // DESTINATION <verb> <tense> PERIOD
     case tokentype::DESTINATION:
       match(tokentype::DESTINATION);
-      afterDestination();
+      verb();
+      tense();
+      match(tokentype::PERIOD);
       
       //OBJECT <after object>
     case tokentype::OBJECT:
