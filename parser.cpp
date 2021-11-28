@@ -229,19 +229,22 @@ void afterNoun()
     case tokentype::WAS:
       be();
       match(tokentype::PERIOD);
-
+      break;	
+		  	
       // DESTINATION <verb> <tense> PERIOD
     case tokentype::DESTINATION:
       match(tokentype::DESTINATION);
       verb();
       tense();
       match(tokentype::PERIOD);
-      
+      break;
+		  
       //OBJECT <after object>
     case tokentype::OBJECT:
       match(tokentype::OBJECT);
       afterObject();
-      
+      break;
+		  
     default:
       syntaxerror2(saved_lexeme, "afterNoun");
       exit(1);
@@ -297,11 +300,13 @@ void noun()
       //WORD1
     case tokentype::WORD1:
       match(tokentype::WORD1);
-      
+      break;
+		  
       //PRONOUN
     case tokentype::PRONOUN:
       match(tokentype::PRONOUN);
-
+      break;
+		  
     default:
       syntaxerror2(saved_lexeme, "noun");
       exit(1);
@@ -319,7 +324,8 @@ void verb()
       //WORD2
     case tokentype::WORD2:
       match(tokentype::WORD2);
-      
+      break;
+		  
     default:
       syntaxerror2(saved_lexeme, "verb");
       exit(1);
@@ -363,19 +369,23 @@ void tense()
       // VERBPAST
     case tokentype::VERBPAST:
       match(tokentype::VERBPAST);
-
+      break;
+		  
       // VERBPASTNEG
     case tokentype::VERBPASTNEG:
       match(tokentype::VERBPASTNEG);
-
+      break;
+		  
       // VERB
     case tokentype::VERB:
       match(tokentype::VERB);
-
+      break;
+		  
       // VERBNEG
     case tokentype::VERBNEG:
       match(tokentype::VERBNEG);
-
+      break;
+		  
     default:
       syntaxerror2(saved_lexeme, "tense");
       exit(1);
