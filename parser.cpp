@@ -196,6 +196,8 @@ void afterSubject() {
       tense();
       // PERIOD
       match( tokentype::PERIOD );
+      break;
+      
     // <noun> <after noun>
     // Since <noun> can be WORD1 or PRONOUN, check WORD1 and PRONOUN.
     case tokentype::WORD1:
@@ -204,6 +206,8 @@ void afterSubject() {
       noun();
       // <after noun>
       afterNoun();
+      break;
+      
     // Neither the two cases.
     default:
       // Exit the program for failing to read after the subject.
@@ -258,9 +262,10 @@ void afterObject() {
     case tokentype::PRONOUN:
       // <noun>
       noun();
-      
       // DESTINATION
       match( tokentype::DESTINATION );
+      break;
+
     // If not then do not call a syntax error.
     default:
       // This time do not call syntax error.
