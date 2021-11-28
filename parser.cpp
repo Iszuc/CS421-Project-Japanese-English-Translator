@@ -214,7 +214,7 @@ void afterSubject() {
   }
 }
 
-// Grammar: <after noun> := <be> PERIOD | DESTINATION <after destination>
+// Grammar: <after noun> := <be> PERIOD | DESTINATION <verb> <tense> PERIOD
 //                        | OBJECT <after object>
 // Done by: ** Isaac Sayasane
 void afterNoun() 
