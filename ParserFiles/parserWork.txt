@@ -19,7 +19,7 @@ If the member did not fully contribute to the assigned part, do not list his/her
   afterObject()         Michael Snodgrass
   be()                  Michael Snodgrass
 
-2.  Who came to the meeting to test the program together?
+2.  Who came to the meeting to test the program together? Michael Snodgrass
 
 3.  You have included all the required comments? Michael Snodgrass
     (Grammer: and Done by: )
