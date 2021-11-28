@@ -414,6 +414,9 @@ int main()
     // call the <story> to start parsing
     story();
     
+    // Tell the user that we have successfully parsed the fin file.
+    cout << endl << "Successfully parsed <story>." << endl;
+    
     // close the input file.
     fin.close();
     
