@@ -74,7 +74,11 @@ tokentype next_token()
                                     // saved_lexeme is the word that is read in
       token_available = true;          // mark that fact that you have saved it
                                     //in saved_lexme
-     
+      
+      // Michael Snodgrass -- I talked with the instructor and it is okay for me to fix your code.
+      // Tell the user that the scanner is in fact called.
+      cout << "Scanner called using word: " << saved_lexeme << endl;
+      
       if (saved_token == ERROR)
 	{ 
 	  syntaxerror1(saved_lexeme, saved_token);
