@@ -41,7 +41,7 @@ void syntaxerror1( string savedLexeme, tokentype expectedTokenType ) {
   }
   
   // Tell the user that the syntax error is found.
-  cout << "SYNTAX ERROR: expected " << tokenName[ expectedTokenType ] << " but found " << savedLexeme << endl;
+  cout << "SYNTAX ERROR: Expected " << tokenName[ expectedTokenType ] << " but found " << savedLexeme << endl;
   
   // Exit the program.
   exit(1);
@@ -51,7 +51,7 @@ void syntaxerror1( string savedLexeme, tokentype expectedTokenType ) {
 // Done by: ** Isaac Sayasane 
 void syntaxerror2(string savedLexeme, string parserFunction)
 {
-  cout << "SYNTAX ERROR: unexpected " << savedLexeme << " found in "
+  cout << "SYNTAX ERROR: Unexpected " << savedLexeme << " found in "
        << parserFunction << endl;
   exit(1);
 }
@@ -78,12 +78,6 @@ tokentype next_token()
       // Tell the user that the scanner is in fact called.
       cout << "Scanner called using word: " << saved_lexeme << endl;
 
-      //DEBUG COMMENT
-      //cout << "saved_token: " << tokenName[saved_token] << endl;
-      if (saved_token == ERROR)
-	{ 
-	  syntaxerror1(saved_lexeme, saved_token);
-	}
     }
   return saved_token;    // return the saved token
 }

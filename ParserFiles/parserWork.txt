@@ -29,7 +29,7 @@ If the member did not fully contribute to the assigned part, do not list his/her
     (Grammer: and Done by: )
 
 4.  The parser produced correct output for 
-    all 6 test cases? Michael Snodgrass, ????? Isaac Sayasane did you do this ?????
+    all 6 test cases? Michael Snodgrass, Isaac Sayasane 
 
 5.  What extra credit feature did you include?
     If it is error correction, did you make sure errors.txt
