@@ -7,9 +7,9 @@ Must have divided the work as specified.
 If the member did not fully contribute to the assigned part, do not list his/her name!
 
 1.State who did what by indicating: 
-  Member A tasks (syntax error functions) - who: Michael Snodgrass, <<<<Isaac Sayasane>>>>
-  Member B tasks (match and next_token)- who: <<<<Isaac Sayasane>>>>
-  Member C tasks (main()) who: Michael Snodgrass, <<<<Isaac Sayasane>>>>
+  Member A tasks (syntax error functions) - who: Michael Snodgrass, Isaac Sayasane
+  Member B tasks (match and next_token)- who: Isaac Sayasane
+  Member C tasks (main()) who: Michael Snodgrass, Isaac Sayasane
   Who wrote which parser functions? 
   functions             who
   ----------------      ----------
@@ -18,14 +18,14 @@ If the member did not fully contribute to the assigned part, do not list his/her
   afterSubject()        Michael Snodgrass
   afterObject()         Michael Snodgrass
   be()                  Michael Snodgrass
-  tense()               <<<<Isaac Sayasane>>>>
-  verb()                <<<<Isaac Sayasane>>>>
-  noun()                <<<<Isaac Sayasane>>>>
-  afterNoun()           <<<<Isaac Sayasane>>>>
+  tense()               Isaac Sayasane
+  verb()                Isaac Sayasane
+  noun()                Isaac Sayasane
+  afterNoun()           Isaac Sayasane
 
-2.  Who came to the meeting to test the program together? Michael Snodgrass, <<<<Isaac Sayasane>>>>
+2.  Who came to the meeting to test the program together? Michael Snodgrass, Isaac Sayasane
 
-3.  You have included all the required comments? Michael Snodgrass, <<<<Isaac Sayasane>>>>
+3.  You have included all the required comments? Michael Snodgrass, Isaac Sayasane
     (Grammer: and Done by: )
 
 4.  The parser produced correct output for 

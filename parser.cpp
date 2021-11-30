@@ -75,10 +75,11 @@ tokentype next_token()
       token_available = true;          // mark that fact that you have saved it
                                     //in saved_lexme
       
-      // Michael Snodgrass -- I talked with the instructor and it is okay for me to fix your code.
       // Tell the user that the scanner is in fact called.
       cout << "Scanner called using word: " << saved_lexeme << endl;
-      
+
+      //DEBUG COMMENT
+      //cout << "saved_token: " << tokenName[saved_token] << endl;
       if (saved_token == ERROR)
 	{ 
 	  syntaxerror1(saved_lexeme, saved_token);
@@ -94,7 +95,7 @@ bool match(tokentype expected)
   if (next_token() != expected)   // mismatch has occurred with the next token
     {
       // calls a syntax error function here to generate a syntax error message here and do recovery
-      syntaxerror2(saved_lexeme, "match");
+      syntaxerror1(saved_lexeme, expected);
 	}
   else  // match has occurred
     {
