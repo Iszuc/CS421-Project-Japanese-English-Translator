@@ -9,7 +9,7 @@ If the member did not fully contribute to the assigned part, do not list his/her
 1.State who did what by indicating: 
   Member A tasks (syntax error functions) - who: Michael Snodgrass, Isaac Sayasane
   Member B tasks (match and next_token)- who: Isaac Sayasane
-  Member C tasks (main()) who: Michael Snodgrass, Isaac Sayasane
+  Member C tasks (main()) who: Michael Snodgrass
   Who wrote which parser functions? 
   functions             who
   ----------------      ----------
