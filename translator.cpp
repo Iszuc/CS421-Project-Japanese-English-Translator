@@ -421,6 +421,7 @@ string filename;
 // Done by:  **
 int main()
 {
+  // Michael Snodgrass -- Later I think I can base it with the parser's main, but we will see.
   //** opens the lexicon.txt file and reads it into Lexicon
   //** closes lexicon.txt 
 
