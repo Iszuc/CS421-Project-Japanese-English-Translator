@@ -427,12 +427,26 @@ string filename;
 // ---------------- Driver ---------------------------
 
 // The final test driver to start the translator
-// Done by:  **
+// Done by:  Michael Snodgrass
 int main()
 {
-  // Michael Snodgrass -- Later I think I can base it with the parser's main, but we will see.
-  //** opens the lexicon.txt file and reads it into Lexicon
-  //** closes lexicon.txt 
+  // opens the lexicon.txt file
+  ifstream lexicon_file;
+
+  lexicon_file.open( "lexicon.txt" );
+  
+  // reads it into Lexicon.
+  for( int i = 0; i < SIZE; i++ )
+  {
+    for( int d = 0; d < 2; d++ )
+    {
+      lexicon_file  >> Lexicon[ i ][ d ];
+      cout << "L[ " << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl;
+    }
+  }
+
+  // closes lexicon.txt
+  lexicon_file.close();
 
   //** opens the output file translated.txt
 
@@ -440,10 +454,13 @@ int main()
   cin >> filename;
   fin.open(filename.c_str());
 
-  //** calls the <story> to start parsing
+  // calls the <story> to start parsing
+  story();
 
-  //** closes the input file 
-  //** closes traslated.txt
+  // closes the input file.
+  fin.close();
+
+  //** closes translated.txt
  
 }// end
 //** require no other input files!
