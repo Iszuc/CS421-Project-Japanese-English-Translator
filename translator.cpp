@@ -6,11 +6,7 @@
 #include<string>
 using namespace std;
 
-/* INSTRUCTION:  copy your parser.cpp here
-      cp ../ParserFiles/parser.cpp .
-   Then, insert or append its contents into this file and edit.
-   Complete all ** parts.
-*/
+// INSTRUCTION: Complete all ** parts.
 
 //=================================================
 // File translator.cpp written by Group Number: 13
@@ -18,16 +14,19 @@ using namespace std;
 
 // ----- Additions to the parser.cpp ---------------------
 
-// More Globals
- ofstream translated_output;
-
-
 // ** Declare Lexicon (i.e. dictionary) that will hold the content of lexicon.txt
 // Make sure it is easy and fast to look up the translation.
 // Do not change the format or content of lexicon.txt 
 //  Done by: ** Isaac Sayasane
 const int SIZE = 50; //About 50 words are in our lexicon.txt
 string Lexicon[SIZE][2]; 
+
+// saved_token and saved_lexeme
+tokentype saved_token;
+string saved_lexeme;
+bool token_available = false; // Set the intial value to false because next_token will automatically fill in saved_token and saved_lexeme.
+
+ofstream translated_output;
 
 // ** Additions to parser.cpp here:
 //    getEword() - using the current saved_lexeme, look up the English word
@@ -45,16 +44,10 @@ void getEword(string& saved_lexeme)
 //    gen(line_type) - using the line type,
 //                     sends a line of an IR to translated.txt
 //                     (saved_E_word or saved_token is used)
-//  Done by: ** 
-
-// ----- Changes to the parser.cpp content ---------------------
-
-// ** Comment update: Be sure to put the corresponding grammar 
-//    rule with semantic routine calls
-//    above each non-terminal function 
-
-// ** Each non-terminal function should be calling
-//    getEword and/or gen now.
+//  Done by: Michael Snodgrass
+void gen( int line_type ) {
+	
+}
 
 // ----- Four Utility Functions and Globals -----------------------------------
 
@@ -93,10 +86,6 @@ void syntaxerror2(string savedLexeme, string parserFunction)
 
 // ** Need the updated match and next_token with 2 global vars
 // saved_token and saved_lexeme
-
-tokentype saved_token;
-string saved_lexeme;
-bool token_available = false; // Set the intial value to false because next_token will automatically fill in saved_token and saved_lexeme.
 
 // Purpose: ** Looks ahead to see what token comes next from the scanner.
 // Done by: ** Isaac Sayasane
@@ -137,9 +126,9 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 
-// ** Make each non-terminal into a function here
-// ** Be sure to put the corresponding grammar rule above each function
-// ** Be sure to put the name of the programmer above each function
+// Make each non-terminal into a function here
+// Be sure to put the corresponding grammar rule above each function
+// Be sure to put the name of the programmer above each function
 
 // I added prototypes.
 void s();
@@ -150,6 +139,16 @@ void noun();
 void verb();
 void be();
 void tense();
+
+// ----- Changes to the parser.cpp content ---------------------
+
+// ** Comment update: Be sure to put the corresponding grammar
+//    rule with semantic routine calls
+//    above each non-terminal function
+
+// ** Each non-terminal function should be calling
+//    getEword and/or gen now.
+
 
 // Grammar: <story> := <s> { <s> }
 // Done by: Michael Snodgrass
@@ -285,7 +284,7 @@ void afterNoun()
     }
 }
 
-// Grammar: <after object> := [<noun> DESTINATION] <verb> <tense> PERIOD
+// Grammar: <after object> := <verb> <tense> PERIOD | <noun> DESTINATION <verb> <tense> PERIOD
 // Done by: Michael Snodgrass
 void afterObject() {
   // Tell the user that the program is now processing a sentence.
@@ -299,28 +298,40 @@ void afterObject() {
     case tokentype::PRONOUN:
       // <noun>
       noun();
+      
       // DESTINATION
       match( tokentype::DESTINATION );
+      
+      // <verb>
+      // Call the verb function.
+      verb();
+
+      // <tense>
+      // Call the tense funciton.
+      tense();
+
+      // Finally match the token to the PERIOD.
+      match( tokentype::PERIOD );
+      break;
+    // Check if the next output will be a verb.
+    case tokentype::WORD2:
+      // <verb>
+      // Call the verb function.
+      verb();
+      
+      // <tense>
+      // Call the tense funciton.
+      tense();
+      
+      // Finally match the token to the PERIOD.
+      match( tokentype::PERIOD );
       break;
 
-    // If not then do not call a syntax error.
+    // If not then do call a syntax error!
     default:
-      // This time do not call syntax error.
-      // If I had to check for only one tokentype this would have been an if statement.
-      // It is only a choice in style and effiency.
+      syntaxerror2(saved_lexeme, "afterObject");
       break;
   }
-  
-  // <verb>
-  // Call the verb function.
-  verb();
-  
-  // <tense>
-  // Call the tense funciton.
-  tense();
-
-  // Finally match the token to the PERIOD.
-  match( tokentype::PERIOD );
 }
 
 // Grammar: ** WORD1 | PRONOUN
@@ -436,9 +447,11 @@ int main()
 {
   // opens the lexicon.txt file
   ifstream lexicon_file;
-
+  
+  // lexicon_file may or may not be opened.
   lexicon_file.open( "lexicon.txt" );
   
+  // Check if the lexicon file is opened.
   if( lexicon_file.is_open() )
   {
     // reads it into Lexicon.
@@ -447,7 +460,7 @@ int main()
       for( int d = 0; d < 2; d++ )
       {
         lexicon_file  >> Lexicon[ i ][ d ];
-        cout << "L[ " << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl;
+        // cout << "L[" << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl; // Simply debug output
       }
     }
 
@@ -455,7 +468,7 @@ int main()
     lexicon_file.close();
 
     // opens the output file translated.txt
-    lexicon_file.open( "translated.txt" );
+    translated_output.open( "translated.txt" );
 
     cout << "Enter the input file name: ";
     cin >> filename;
@@ -470,7 +483,7 @@ int main()
     // closes translated.txt
     translated_output.close();
   }
-  else
+  else // This loop should not run if lexicon is not found.
     cout << "Run this with \"lexicon.txt\"" << endl;
 }// end
 //** require no other input files!
