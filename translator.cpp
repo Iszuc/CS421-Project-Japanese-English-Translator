@@ -21,14 +21,24 @@ using namespace std;
 // ** Declare Lexicon (i.e. dictionary) that will hold the content of lexicon.txt
 // Make sure it is easy and fast to look up the translation.
 // Do not change the format or content of lexicon.txt 
-//  Done by: ** 
-
+//  Done by: ** Isaac Sayasane
+const int SIZE = 50; //About 50 words are in our lexicon.txt
+string lexicon[SIZE][2]; 
 
 // ** Additions to parser.cpp here:
 //    getEword() - using the current saved_lexeme, look up the English word
 //                 in Lexicon if it is there -- save the result   
 //                 in saved_E_word
-//  Done by: ** 
+//  Done by: ** Isaac Sayasane
+void getEword(string& saved_lexeme)
+{
+  for(int i = 0; i < SIZE; i++)
+    {
+      //If found save the English word
+      if(saved_lexeme == lexicon[i][0]) saved_lexeme = lexicon[i][1]; return;
+    }
+}  
+
 //    gen(line_type) - using the line type,
 //                     sends a line of an IR to translated.txt
 //                     (saved_E_word or saved_token is used)
