@@ -18,6 +18,10 @@ using namespace std;
 
 // ----- Additions to the parser.cpp ---------------------
 
+// More Globals
+ ofstream translated_output;
+
+
 // ** Declare Lexicon (i.e. dictionary) that will hold the content of lexicon.txt
 // Make sure it is easy and fast to look up the translation.
 // Do not change the format or content of lexicon.txt 
@@ -435,33 +439,39 @@ int main()
 
   lexicon_file.open( "lexicon.txt" );
   
-  // reads it into Lexicon.
-  for( int i = 0; i < SIZE; i++ )
+  if( lexicon_file.is_open() )
   {
-    for( int d = 0; d < 2; d++ )
+    // reads it into Lexicon.
+    for( int i = 0; i < SIZE; i++ )
     {
-      lexicon_file  >> Lexicon[ i ][ d ];
-      cout << "L[ " << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl;
+      for( int d = 0; d < 2; d++ )
+      {
+        lexicon_file  >> Lexicon[ i ][ d ];
+        cout << "L[ " << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl;
+      }
     }
+
+    // closes lexicon.txt
+    lexicon_file.close();
+
+    // opens the output file translated.txt
+    lexicon_file.open( "translated.txt" );
+
+    cout << "Enter the input file name: ";
+    cin >> filename;
+    fin.open(filename.c_str());
+
+    // calls the <story> to start parsing
+    story();
+
+    // closes the input file.
+    fin.close();
+
+    // closes translated.txt
+    translated_output.close();
   }
-
-  // closes lexicon.txt
-  lexicon_file.close();
-
-  //** opens the output file translated.txt
-
-  cout << "Enter the input file name: ";
-  cin >> filename;
-  fin.open(filename.c_str());
-
-  // calls the <story> to start parsing
-  story();
-
-  // closes the input file.
-  fin.close();
-
-  //** closes translated.txt
- 
+  else
+    cout << "Run this with \"lexicon.txt\"" << endl;
 }// end
 //** require no other input files!
 //** syntax error EC requires producing errors.txt of error messages
