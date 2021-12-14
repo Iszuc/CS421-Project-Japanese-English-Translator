@@ -455,7 +455,7 @@ int main()
     lexicon_file.close();
 
     // opens the output file translated.txt
-    lexicon_file.open( "translated.txt" );
+    translated_output.open( "translated.txt" );
 
     cout << "Enter the input file name: ";
     cin >> filename;
