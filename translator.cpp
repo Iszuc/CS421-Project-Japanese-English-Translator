@@ -459,6 +459,7 @@ int main()
     {
       for( int d = 0; d < 2; d++ )
       {
+        // Input the lexicon contents.
         lexicon_file  >> Lexicon[ i ][ d ];
         // cout << "L[" << i << "][" << d << "] = " << Lexicon[ i ][ d ] << endl; // Simply debug output
       }
