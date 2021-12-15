@@ -186,7 +186,7 @@ void story() {
   }
 }
 
-// Grammar: <s> := [CONNECTOR] <noun> SUBJECT <after subject>
+// Grammar: <s> := [CONNECTOR #getEword# #gen(“CONNECTOR”)#] <noun> #getEword# SUBJECT #gen(“ACTOR”)# <after subject>
 // Done by: Michael Snodgrass
 void s() {
   // Tell the user that the program is now processing a sentence.
@@ -199,22 +199,34 @@ void s() {
     // match the tokentype::CONNECTOR.
     match( tokentype::CONNECTOR );
     // match should always succeed at this point.
+    
+    // #getEword#
+    getEword();
+    
+    // Output: "CONNECTOR: SomeEnglishWord"
+    gen( "CONNECTOR" );
   }
   
   // <noun>
   // This will call noun to check if it is a noun.
   noun();
   
+  // #getEword#
+  getEword();
+  
   // SUBJECT
   // See if subject is called.
   match( tokentype::SUBJECT );
+  
+  // Output: "ACTOR: SomeEnglishWord"
+  gen( "ACTOR" );
   
   // <after subject>
   // This will call afterSubject to check if it is an afterSubject.
   afterSubject();
 }
 
-// Grammar: <after subject> := <verb> <tense> PERIOD | <noun> <after noun>
+// Grammar: <after subject> := <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD | <noun> #getEword# <after noun>
 // Done by: Michael Snodgrass
 void afterSubject() {
   // Tell the user that the program is now processing a sentence.
@@ -227,8 +239,19 @@ void afterSubject() {
     case tokentype::WORD2:
       // <verb>
       verb();
+      
+      // #getEword#
+      getEword();
+      
+      // Output: "ACTION: SomeEnglishWord"
+      gen( "ACTION" );
+      
       // <tense>
       tense();
+      
+      // Output: "TENSE: SomeEnglishWord"
+      gen("TENSE");
+      
       // PERIOD
       match( tokentype::PERIOD );
       break;
@@ -239,6 +262,10 @@ void afterSubject() {
     case tokentype::PRONOUN:
       // <noun>
       noun();
+      
+      // #getEword#
+      getEword();
+      
       // <after noun>
       afterNoun();
       break;
@@ -286,13 +313,13 @@ void afterNoun()
     }
 }
 
-// Grammar: <after object> := <verb> <tense> PERIOD | <noun> DESTINATION <verb> <tense> PERIOD
+// Grammar: <after object> := <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD | <noun> #getEword# DESTINATION #gen(“TO”)# <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD
 // Done by: Michael Snodgrass
 void afterObject() {
   // Tell the user that the program is now processing a sentence.
   cout << "Processing <after object>" << endl;
   
-  // [<noun> DESTINATION]
+  // <verb> ... | <noun> ...
   switch( next_token() )
   {
     // Check if the next output will be a noun.
@@ -301,16 +328,31 @@ void afterObject() {
       // <noun>
       noun();
       
+      // #getEword#
+      getEword();
+      
       // DESTINATION
       match( tokentype::DESTINATION );
+      
+      // Output: "TO: SomeEnglishWord"
+      gen("TO");
       
       // <verb>
       // Call the verb function.
       verb();
-
+      
+      // #getEword#
+      getEword();
+      
+      // Output: "ACTION: SomeEnglishWord"
+      gen("ACTION");
+      
       // <tense>
       // Call the tense funciton.
       tense();
+      
+      // Output: "TENSE: SomeEnglishWord"
+      gen("TENSE");
 
       // Finally match the token to the PERIOD.
       match( tokentype::PERIOD );
@@ -320,10 +362,19 @@ void afterObject() {
       // <verb>
       // Call the verb function.
       verb();
+
+      // #getEword#
+      getEword();
+      
+      // Output: "ACTION: SomeEnglishWord"
+      gen("ACTION");
       
       // <tense>
       // Call the tense funciton.
       tense();
+      
+      // Output: "TENSE: SomeEnglishWord"
+      gen("TENSE");
       
       // Finally match the token to the PERIOD.
       match( tokentype::PERIOD );
