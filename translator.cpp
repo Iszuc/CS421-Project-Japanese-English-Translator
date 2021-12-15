@@ -38,7 +38,10 @@ void getEword()
   for(int i = 0; i < SIZE; i++)
     {
       //Save the English word instead if found
-      if(saved_lexeme == Lexicon[i][0]) saved_E_word = Lexicon[i][1]; return;
+      if(saved_lexeme == Lexicon[i][0]){
+	saved_E_word = Lexicon[i][1]; 
+	return;
+      }
     }
 }  
 
@@ -277,8 +280,9 @@ void afterSubject() {
   }
 }
 
-// Grammar: <after noun> := <be> PERIOD | DESTINATION <verb> <tense> PERIOD
-//                        | OBJECT <after object>
+// Grammar: <after noun> := <be> #gen(“DESCRIPTION”)# #gen(“TENSE”)# PERIOD | 
+//                          DESTINATION #gen(“TO”)# <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD | 
+//                          OBJECT #gen(“OBJECT”)# <after object>
 // Done by: ** Isaac Sayasane
 void afterNoun() 
 {
@@ -286,24 +290,31 @@ void afterNoun()
   
   switch(next_token())
     {
-      // <be> PERIOD
+      // <be> #gen(“DESCRIPTION”)# #gen(“TENSE”)# PERIOD
     case tokentype::IS:
     case tokentype::WAS:
       be();
+      gen("DESCRIPTION");
+      gen("TENSE");
       match(tokentype::PERIOD);
       break;	
 		  	
-      // DESTINATION <verb> <tense> PERIOD
+      // DESTINATION #gen(“TO”)# <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD
     case tokentype::DESTINATION:
       match(tokentype::DESTINATION);
+      gen("TO");
       verb();
+      getEword();
+      gen("ACTION");
       tense();
+      gen("TENSE");
       match(tokentype::PERIOD);
       break;
 		  
-      //OBJECT <after object>
+      //OBJECT #gen(“OBJECT”)# <after object>
     case tokentype::OBJECT:
       match(tokentype::OBJECT);
+      gen("OBJECT");
       afterObject();
       break;
 		  
