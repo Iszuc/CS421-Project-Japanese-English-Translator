@@ -31,11 +31,14 @@ ofstream translated_output;
 //                 in Lexicon if it is there -- save the result   
 //                 in saved_E_word
 //  Done by: ** Isaac Sayasane
-void getEword(string& saved_lexeme)
+void getEword()
 {
+  //Default to Japanese word incase it is not found
+  saved_E_word = saved_lexeme;
   for(int i = 0; i < SIZE; i++)
     {
-      if(saved_lexeme == Lexicon[i][0]) saved_lexeme = Lexicon[i][1]; return;
+      //Save the English word instead if found
+      if(saved_lexeme == Lexicon[i][0]) saved_E_word = Lexicon[i][1]; return;
     }
 }  
 
