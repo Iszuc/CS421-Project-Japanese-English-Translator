@@ -21,14 +21,12 @@ using namespace std;
 const int SIZE = 50; //About 50 words are in our lexicon.txt
 string Lexicon[SIZE][2]; 
 
-// saved_token and saved_lexeme
 tokentype saved_token;
 string saved_lexeme;
+string saved_E_word; // This is the saved English word if an English word is found otherwise it is a Japanese word.
 bool token_available = false; // Set the intial value to false because next_token will automatically fill in saved_token and saved_lexeme.
-
 ofstream translated_output;
 
-// ** Additions to parser.cpp here:
 //    getEword() - using the current saved_lexeme, look up the English word
 //                 in Lexicon if it is there -- save the result   
 //                 in saved_E_word
@@ -45,8 +43,9 @@ void getEword(string& saved_lexeme)
 //                     sends a line of an IR to translated.txt
 //                     (saved_E_word or saved_token is used)
 //  Done by: Michael Snodgrass
-void gen( int line_type ) {
-	
+void gen( string line_type ) {
+  // TODO Check if this is complete.
+  translated_output << line_type << ": " << saved_E_word << endl;
 }
 
 // ----- Four Utility Functions and Globals -----------------------------------
