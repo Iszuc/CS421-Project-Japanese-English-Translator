@@ -50,8 +50,19 @@ void getEword()
 //                     (saved_E_word or saved_token is used)
 //  Done by: Michael Snodgrass
 void gen( string line_type ) {
-  // TODO Check if this is complete.
-  translated_output << line_type << ": " << saved_E_word << endl;
+  // Start by printing out "line_type: "
+  translated_output << line_type << ": ";
+  
+  // If the line_type happens to be tense.
+  if(line_type == "TENSE")
+    // Then output the token name of the token.
+    translated_output << tokenName[ saved_token ];
+  else // If the line_type is something else entirely.
+    // Then output the saved English or Japanese word.
+    translated_output << saved_E_word;
+  
+  // Finally print the end of the line!
+  translated_output << endl;
 }
 
 // ----- Four Utility Functions and Globals -----------------------------------
@@ -227,6 +238,9 @@ void s() {
   // <after subject>
   // This will call afterSubject to check if it is an afterSubject.
   afterSubject();
+  
+  // Add some spacing to the file.
+  translated_output << endl;
 }
 
 // Grammar: <after subject> := <verb> #getEword# #gen(“ACTION”)# <tense> #gen(“TENSE”)# PERIOD | <noun> #getEword# <after noun>
