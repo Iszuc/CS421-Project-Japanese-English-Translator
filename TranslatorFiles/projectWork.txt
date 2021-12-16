@@ -1,27 +1,29 @@
 
 Fill this and submitIt_LK with the executable.
 
-GROUP#:
+GROUP#: 13
 
 Must have divided the work as specified.
 If the member did not fully contribute to the assigned part,
 do not list his/her name!!!!!
 1.State who did what by indicating: 
   Member A tasks (getEword) - who: Isaac Sayasane
-  Member B tasks (gen) - who:
-  Member C tasks (dictionary) - who: Isaac Sayasane
+  Member B tasks (gen) - who: Michael Snodgrass
+  Member C tasks (dictionary) - who: Isaac Sayasane, Michael Snodgrass (The loading)
   Who updated which parser functions with getEword and gen calls?
    functions         who
    -------------  ---------
    afterNoun	  Isaac Sayasane
-  
+   s            Michael Snodgrass -- I accidently did 3.
+   afterSubject Michael Snodgrass
+   afterObject  Michael Snodgrass
 
-2. Who came to the meeting to put together the work? Isaac Sayasane
+2. Who came to the meeting to put together the work? Isaac Sayasane, Michael Snodgrass
     
-3. You have included all the required comments?	Isaac Sayasane
+3. You have included all the required comments?	Isaac Sayasane, Michael Snodgrass
    (updated the grammar rules in comments?)	
 
-4. The project produced correct output for all 6 Isaac Sayasane
+4. The project produced correct output for all 6 Isaac Sayasane, Michael Snodgrass
    test cases?
 
 5. If you did EC error recovery,
